@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+        "node_modules/": true,
+        "server": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/build": true,
+        "**/server": true
+    }
+}

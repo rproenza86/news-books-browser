@@ -1,0 +1,49 @@
+{
+    "name": "news-books-browser",
+    "version": "0.1.0",
+    "contributors": [
+        "rproenza86@gmail.com"
+    ],
+    "license": "BSD-3-Clause",
+    "repository": "rproenza86/news-books-browser",
+    "scripts": {
+        "start": "polymer serve -p 3000",
+        "serve": "polymer serve -p 5555 & npm run watch",
+        "watch": "browser-sync start --proxy localhost:5555 src -f '**/*' --serveStatic ./node_modules -b 'google chrome' --no-notify --port 5000",
+        "build": "npm run build:prpl-server && npm run build:static",
+        "build:prpl-server": "polymer build --auto-base-path && gulp prpl-server",
+        "build:prpl-functions": "npm run build:functions-prpl-server  && cp -R functions/build server",
+        "build:functions-prpl-server": "polymer build --auto-base-path && rm -rf functions/build && mv build functions/ && renamer --find node_modules --replace node_assets 'functions/build/**' && replace node_modules node_assets functions/build -r -s",
+        "build:static": "polymer build",
+        "serve:prpl-server": "prpl-server --root server/build",
+        "serve:static": "polymer serve --port 5000 build/es5-bundled",
+        "deploy": "npm run build:prpl-functions && firebase deploy --only hosting,functions",
+        "test": "npm run test:unit",
+        "test:unit": "polymer test --module-resolution=node --npm",
+        "functions": "firebase serve --only functions -p 9889"
+    },
+    "dependencies": {
+        "@polymer/app-layout": "^3.0.0-pre.19",
+        "@polymer/lit-element": "^0.5.2",
+        "@webcomponents/webcomponentsjs": "^2.0.0",
+        "pwa-helpers": "^0.8.2",
+        "redux": "^3.7.2",
+        "redux-thunk": "^2.2.0",
+        "reselect": "^3.0.1"
+    },
+    "devDependencies": {
+        "axe-core": "^3.0.0",
+        "browser-sync": "^2.24.5",
+        "chai": "^4.1.2",
+        "del": "^3.0.0",
+        "gulp": "^4.0.0",
+        "gulp-rename": "^1.2.3",
+        "gulp-replace": "^1.0.0",
+        "mocha": "^5.1.0",
+        "polymer-cli": "^1.7.7",
+        "prpl-server": "^1.1.0",
+        "renamer": "^0.6.1",
+        "replace": "^1.0.0",
+        "wct-browser-legacy": "^1.0.1"
+    }
+}

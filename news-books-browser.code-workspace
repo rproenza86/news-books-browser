@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "name": "PWA - Client",
+      "path": "."
+    },
+    {
+      "name": "PWA - PRPL-Server",
+      "path": "functions"
+    }
+  ],
+  "settings": {
+    "workbench.iconTheme": "vscode-icons"
+  }
+}
