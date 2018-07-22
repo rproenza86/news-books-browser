@@ -24,7 +24,7 @@ function unsplashRequest(searchedForText) {
 
 function articleRequest(searchedForText) {
     return new Promise((resolve, reject) => {
-        const url = `http://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=${newYorkTimeKey}`;
+        const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=${newYorkTimeKey}`;
         fetch(url).then(function(response) {
             if (response.ok) {
                 resolve(response.json());

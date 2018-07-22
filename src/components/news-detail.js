@@ -248,15 +248,12 @@ class NewsDetail extends connect(store)(PageViewElement) {
             <div class="info-item" hidden?="${!pageCount}" desktop>${pageCount} pages</div>
             <div class="info-item" hidden?="${!publisher}" desktop>${publisher} - publisher</div>
             <div class="flex"></div>
-            <div class="fav-btn-container" hidden?="${_lastVisitedListPage ===
-                "favorites"}">
-              <button class="fav-button" on-click="${() =>
-                  store.dispatch(
-                      saveFavorite(_item, isFavorite)
-                  )}" hidden?="${!_isSignedIn}">
-                ${isFavorite ? favoriteIcon : favoriteBorderIcon} ${
-            isFavorite ? "Added to Favorites" : "Add to Favorites"
-        }
+            <div class="fav-btn-container" >
+
+              <button class="fav-button">
+                <a href="${
+                    _item.web_url
+                }" class="book-button">Original article</a>
               </button>
             </div>
             <div class="preview-btn-container">
@@ -297,13 +294,6 @@ class NewsDetail extends connect(store)(PageViewElement) {
             `
             )}
           </ul>
-        </div>
-        <div class="desc">
-          <h3>Original publication</h3>
-          <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="500px" src="${
-              _item.web_url
-          }">
-</iframe>
         </div>
       </section>
 
