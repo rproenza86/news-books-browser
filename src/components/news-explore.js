@@ -142,7 +142,7 @@ class NewsExplore extends connect(store)(PageViewElement) {
     _stateChanged(state) {
         this._query = state.news.query;
         this._items = itemListSelector(state);
-        this._showOffline = state.app.offline && state.books.failure;
+        this._showOffline = state.app.offline && state.news.failure;
     }
 }
 

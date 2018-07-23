@@ -6,7 +6,7 @@ import "@polymer/app-layout/app-toolbar/app-toolbar.js";
 
 import { menuIcon, backIcon, accountIcon } from "./book-icons.js";
 import "./snack-bar.js";
-import "./book-input-decorator.js";
+import "./news-book-input-decorator.js";
 import "./speech-mic.js";
 import "./book-home.js";
 
@@ -131,12 +131,12 @@ class NewsBooksApp extends connect(store)(LitElement) {
         font-weight: normal;
       }
 
-      book-input-decorator {
+      news-book-input-decorator {
         max-width: 460px;
         transform: translate3d(0, 374px, 0);
       }
 
-      book-input-decorator[top] {
+      news-book-input-decorator[top] {
         transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
@@ -251,7 +251,7 @@ class NewsBooksApp extends connect(store)(LitElement) {
         </button>
       </app-toolbar>
       <app-toolbar class="toolbar-bottom" sticky>
-        <book-input-decorator top?="${inputAtTop}" hidden?="${hideInput}">
+        <news-book-input-decorator top?="${inputAtTop}" hidden?="${hideInput}">
           <input slot="input" id="input" aria-label="Search Books" autofocus type="search" value="${query}"
               on-change="${e => {
                   switch (_page) {
@@ -269,7 +269,7 @@ class NewsBooksApp extends connect(store)(LitElement) {
               }}">
           <speech-mic slot="button" continuous interimResults on-result="${e =>
               this._micResult(e)}"></speech-mic>
-        </book-input-decorator>
+        </news-book-input-decorator>
         <h4 class="subtitle" hidden?="${!hideInput}">${_subTitle}</h4>
       </app-toolbar>
     </app-header>

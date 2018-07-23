@@ -17,7 +17,7 @@ const app = (state = { drawerOpened: false }, action) => {
                 ...state,
                 page: p,
                 lastVisitedListPage:
-                    p === "explore" || p === "favorites"
+                    p === "explore" || p === "favorites" || p === "news"
                         ? p
                         : state.lastVisitedListPage
             };

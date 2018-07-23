@@ -33,6 +33,20 @@
             "weight": 1
         }
     },
+    "/news": {
+        "src/components/news-books-app.js": {
+            "type": "script",
+            "weight": 1
+        },
+        "src/components/news-explore.js": {
+            "type": "script",
+            "weight": 1
+        },
+        "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+            "type": "script",
+            "weight": 1
+        }
+    },
     "/detail": {
         "src/components/news-books-app.js": {
             "type": "script",

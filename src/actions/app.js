@@ -111,7 +111,8 @@ export const refreshPage = () => (dispatch, getState) => {
     dispatch(
         loadPage(
             state.app.page,
-            state.books && state.books.query,
+            (state.books && state.books.query) ||
+                (state.news && state.news.query),
             state.book && state.book.id
         )
     );

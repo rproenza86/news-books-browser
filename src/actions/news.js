@@ -10,30 +10,38 @@ function unsplashRequest(searchedForText) {
     return new Promise((resolve, reject) => {
         const url = `https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`;
         const headers = { Authorization: `Client-ID ${unsplashKey}` };
-        fetch(url, { headers }).then(function(response) {
-            if (response.ok) {
-                resolve(response.json());
-            } else {
-                reject(
-                    "Response status is not OK with the unsplash images fetch."
-                );
-            }
-        });
+        const errorMessage =
+            "Response status is not OK with the unsplash images fetch.";
+        fetch(url, { headers })
+            .then(function(response) {
+                if (response.ok) {
+                    resolve(response.json());
+                } else {
+                    reject(errorMessage);
+                }
+            })
+            .catch(() => {
+                throw new Error(errorMessage);
+            });
     });
 }
 
 function articleRequest(searchedForText) {
     return new Promise((resolve, reject) => {
         const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=${newYorkTimeKey}`;
-        fetch(url).then(function(response) {
-            if (response.ok) {
-                resolve(response.json());
-            } else {
-                reject(
-                    "Response status is not OK with the NYTimes news fetch."
-                );
-            }
-        });
+        const errorMessage =
+            "Response status is not OK with the NYTimes news fetch.";
+        fetch(url)
+            .then(function(response) {
+                if (response.ok) {
+                    resolve(response.json());
+                } else {
+                    reject(errorMessage);
+                }
+            })
+            .catch(() => {
+                throw new Error(errorMessage);
+            });
     });
 }
 
@@ -42,6 +50,9 @@ export const searchNews = query => (dispatch, getState) => {
     // This is useful for avoiding a network request.
     if (shouldSearchNews(getState(), query)) {
         dispatch(requestNews(query));
+        if (getState().app.offline) {
+            return dispatch(failNews(query));
+        }
         if (query) {
             Promise.all([articleRequest(query), unsplashRequest(query)])
                 .then(([articles, images]) => {

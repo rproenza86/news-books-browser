@@ -6,7 +6,6 @@ import { connect } from "pwa-helpers/connect-mixin";
 import { updateMetadata } from "pwa-helpers/metadata";
 
 import { BookButtonStyle } from "./shared-styles.js";
-import { favoriteIcon, favoriteBorderIcon } from "./book-icons.js";
 import "./book-rating.js";
 import "./book-offline.js";
 import "./news-image.js";
@@ -16,7 +15,6 @@ import { store } from "../store.js";
 
 import { refreshPage } from "../actions/app.js";
 import { getANews } from "../actions/aNews.js";
-import { saveFavorite } from "../actions/favorites.js";
 import { aNews, aNewsSelector } from "../reducers/aNews.js";
 
 // We are lazy loading its reducer.
